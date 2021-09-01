@@ -56,7 +56,7 @@ namespace University.Web.Controllers
                                    Credits = r.Credits
                                }).ToList();
 
-                ViewBag.Courses = courses;
+                ViewBag.Courses = courses; 
             }
 
             /*ViewBag.Data = "Data de prueba";
