@@ -15,7 +15,6 @@ namespace University.Web.Controllers
         {
             //SELECT * FROM OfficeAssignments
             var query = context.OfficeAssignments.Include("Instructor").ToList();
-
             var offices = query.Select(x => new OfficeAssignmentDTO
             {
                 InstructorID = x.InstructorID,
@@ -37,25 +36,31 @@ namespace University.Web.Controllers
         public ActionResult Create()
         {
             LoadData();
-            context.SaveChanges();
+
             return View();
         }
         [HttpPost]
         public ActionResult Create(OfficeAssignmentDTO office)
         {
             LoadData();
-            context.SaveChanges();
+
 
             if (!ModelState.IsValid)
             {
-
                 return View(ModelState);
             }
 
-            
+            // INSERT INTO OfficeAssignments
+            context.OfficeAssignments.Add(new BL.Models.OfficeAssignment
+            {
+                InstructorID = office.InstructorID,
+                Location = office.Location
+            });
+            context.SaveChanges();
+
             return RedirectToAction("Index");
 
-            
+
         }
 
         public void LoadData()
@@ -64,11 +69,9 @@ namespace University.Web.Controllers
             {
 
                 ID = x.ID,
+                FirstMidName = x.FirstMidName,
                 LastName = x.LastName
             }).ToList();
-
-            // value, text
-
             ViewData["Instructors"] = new SelectList(Instructors, "ID", "FullName");
 
         }
