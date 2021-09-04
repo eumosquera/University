@@ -62,6 +62,99 @@ namespace University.Web.Controllers
             return View(instructors.ToPagedList(page.Value, pageSize.Value));
         }
 
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
 
-    }
-}
+        [HttpPost]
+        public ActionResult Create(InstructorDTO instructor)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return View(instructor);
+
+                if (instructor.HireDate > DateTime.Now)
+                    throw new Exception("La fecha no puede ser mayor a la fecha actual");
+
+                //INSERT INTO Students(FirstMidName,LastName,EnrollmentDate) VALUES(@FirstMidName, @LastName, @EnrollmentDate)
+                context.Instructors.Add(new Instructor
+                {
+                    FirstMidName = instructor.FirstMidName,
+                    LastName = instructor.LastName,
+                    HireDate = instructor.HireDate
+                });
+                context.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+            }
+
+            return View(instructor);
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+
+            var instructor = context.Instructors.Where(x => x.ID == id)
+                                          .Select(x => new InstructorDTO
+                                          {
+                                              ID = x.ID,
+                                              LastName = x.LastName,
+                                              FirstMidName = x.FirstMidName,
+                                              HireDate = x.HireDate
+                                          }).FirstOrDefault();
+
+            return View(instructor);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(InstructorDTO instructor)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return View(instructor);
+
+                if (instructor.HireDate > DateTime.Now)
+                    throw new Exception("La fecha no puede ser mayor a la fecha actual");
+                var instructortModel = context.Instructors.FirstOrDefault(x => x.ID == instructor.ID);
+
+                //campos que se van a modificar
+                //sobreescribo las propiedades del modelo de base de datos
+                instructortModel.LastName = instructor.LastName;
+                instructortModel.FirstMidName = instructor.FirstMidName;
+                instructortModel.HireDate = instructor.HireDate;
+                //aplique los cambios en base de datos
+                context.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+            }
+
+            return View(instructor);
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            if (!context.Departments.Any(x => x.InstructorID == id))
+            {
+                var instructortModel = context.Instructors.FirstOrDefault(x => x.ID == id);
+                context.Instructors.Remove(instructortModel);
+                context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+    } //FIN CLASS CONTROLLER
+} // FIN NAMESPACE
