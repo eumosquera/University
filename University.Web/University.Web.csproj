@@ -175,6 +175,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InstructorsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OfficeAssignmentsController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
@@ -250,6 +251,7 @@
     <Content Include="Views\OfficeAssignments\Index.cshtml" />
     <Content Include="Views\OfficeAssignments\Create.cshtml" />
     <Content Include="Views\OfficeAssignments\Edit.cshtml" />
+    <Content Include="Views\Instructors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

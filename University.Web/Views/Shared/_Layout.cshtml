@@ -35,6 +35,7 @@
 
                 @Html.ActionLink("Students", "Index", "Students", null, new { @class = "list-group-item list-group-item-action bg-light" })
                 @Html.ActionLink("Offices", "Index", "OfficeAssignments", null, new { @class = "list-group-item list-group-item-action bg-light" })
+                @Html.ActionLink("Instructors", "Index", "Instructors", null, new { @class = "list-group-item list-group-item-action bg-light" })
 
                 @if (Request.IsAuthenticated)
                 {
@@ -42,10 +43,8 @@
                 }
                 else
                 {
-                    @Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
-                    @Html.ActionLink("About", "About", "Home", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
-                    @Html.ActionLink("Contact", "Contact", "Home", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
-                }
+
+                } 
             </div>
         </div>
         <!-- ============================================================== -->
