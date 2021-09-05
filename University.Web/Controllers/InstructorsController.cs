@@ -42,9 +42,10 @@ namespace University.Web.Controllers
                                   where q.InstructorID == instructorID
                                   select new DepartmentDTO
                                   {
-                                      InstructorID = q.InstructorID,
-                                      Name = q.Name
-
+                                      
+                                      DepartmentID = q.DepartmentID,
+                                      Name = q.Name,
+                                      Budget = q.Budget
                                   }).ToList();
 
                 ViewBag.Deparments = deparments;

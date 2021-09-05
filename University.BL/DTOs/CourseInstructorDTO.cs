@@ -2,7 +2,7 @@
 
 namespace University.BL.DTOs
 {
-    class CourseInstructorDTO
+    public class CourseInstructorDTO
     {
         [Required()]
         public int ID { get; set; }

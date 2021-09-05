@@ -67,16 +67,20 @@ Toatal Item Count @Model.TotalItemCount
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Instructor ID</th>
-                <th>Name Deparment</th>
+                <th>DeparmentID</th>
+                <th>Name</th>
+                <th>Budget</th>
+                
             </tr>
         </thead>
         <tbody>
             @foreach (var item in (List<University.BL.DTOs.DepartmentDTO>)ViewBag.Deparments)
             {
                 <tr>
-                    <td>@item.InstructorID</td>
+                    <td>@item.DepartmentID</td>
                     <td>@item.Name</td>
+                    <td>@item.Budget</td>
+                    
                 </tr>
             }
         </tbody>
