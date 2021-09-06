@@ -42,6 +42,103 @@ namespace University.Web.Controllers
 
         }
 
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(DepartmentDTO department)
+        {
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    return View(department);
+
+                if (department.StartDate > DateTime.Now)
+                    throw new Exception("La fecha no puede ser mayor a la fecha actual");
+                context.Departments.Add(new Department
+                {
+                    Name = department.Name,
+                    Budget = department.Budget,
+                    StartDate = department.StartDate,
+                    InstructorID = department.InstructorID
+
+                });
+                context.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+
+                ModelState.AddModelError(string.Empty, ex.Message);
+            }
+
+
+            return View(department);
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int departmentid)
+        {
+            var deparment = context.Departments.Where(x => x.DepartmentID == departmentid)
+                                                .Select(x => new DepartmentDTO
+                                                {
+                                                    DepartmentID = x.DepartmentID,
+                                                    Name = x.Name,
+                                                    Budget = x.Budget,
+                                                    StartDate = x.StartDate,
+                                                    InstructorID = x.InstructorID
+
+                                                }).FirstOrDefault();
+
+            return View(deparment);
+        }
+        [HttpPost]
+        public ActionResult Edit(DepartmentDTO department)
+        {
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    return View(department);
+                if (department.StartDate > DateTime.Now)
+                    throw new Exception("La fecha no puede ser mayor a la fecha actual");
+                var departmentModel = context.Departments.FirstOrDefault(x => x.DepartmentID == department.DepartmentID);
+
+                departmentModel.Name = department.Name;
+                departmentModel.Budget = department.Budget;
+                departmentModel.StartDate = department.StartDate;
+                departmentModel.InstructorID = department.InstructorID;
+                //aplique cambios
+                context.SaveChanges();
+                return RedirectToAction("Index");
+
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+
+            }
+            return View(department);
+
+
+        }
+
+        [HttpGet]
+
+        public ActionResult Delete(int departmentid)
+        {
+            var departmentModel = context.Departments.FirstOrDefault(x => x.DepartmentID == departmentid);
+            context.Departments.Remove(departmentModel);
+            context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
     }//FIN PUBLIC CLASS CONTROLLER
 
 } // FIN NAMESPACE

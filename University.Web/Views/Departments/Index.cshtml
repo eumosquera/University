@@ -7,9 +7,9 @@
 <h2>Welcome To Index Deparments</h2>
 
 <hr />
-@Html.ActionLink("New Deparment", "Create", "Deparments", null, new { @class = "btn btn-sm btn-primary" })
+@Html.ActionLink("New Department", "Create", "Departments", null, new { @class = "btn btn-sm btn-primary" })
 <hr />
-@using (Html.BeginForm("Index", "Deparments", FormMethod.Get))
+@using (Html.BeginForm("Index", "Departments", FormMethod.Get))
 {
     <p>
         <select name="PageSize" id="PageSize" class="form-control">
@@ -48,8 +48,8 @@
                 <td>@item.Budget</td>
                 <td>@item.StartDate</td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", "Deparments", new { departmentid = item.DepartmentID }, new { @class = "btn btn-sm btn-primary" })
-                    @Html.ActionLink("Delete", "Delete", "Deparments", new { departmentid = item.DepartmentID }, new { @class = "btn btn-sm btn-primary" })
+                    @Html.ActionLink("Edit", "Edit", "Departments", new { departmentid = item.DepartmentID }, new { @class = "btn btn-sm btn-primary" })
+                    @Html.ActionLink("Delete", "Delete", "Departments", new { departmentid = item.DepartmentID }, new { @class = "btn btn-sm btn-danger" })
                 </td>
             </tr>
         }
