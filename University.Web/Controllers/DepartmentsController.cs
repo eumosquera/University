@@ -19,7 +19,7 @@ namespace University.Web.Controllers
         public ActionResult Index(int? departmentid, int? pageSize, int? page)
         {
             #region Consluta Deparments
-            var query = context.Departments.ToList();
+            var query = context.Departments.Include("Instructor").ToList();
 
             var deparments = query.Where(x => x.StartDate < DateTime.Now)
                 .Select(x => new DepartmentDTO
@@ -27,8 +27,13 @@ namespace University.Web.Controllers
                     DepartmentID = x.DepartmentID,
                     Name = x.Name,
                     Budget = x.Budget,
-                    StartDate = x.StartDate
-
+                    StartDate = x.StartDate,
+                    InstructorID = x.InstructorID,
+                    Instructor =  new InstructorDTO
+                    {
+                        FirstMidName = x.Instructor.FirstMidName,
+                        LastName = x.Instructor.LastName
+                    }
                 }).ToList();
             #endregion
             #region Paginacion
@@ -45,6 +50,8 @@ namespace University.Web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+
+            LoadData();
             return View();
         }
 
@@ -54,12 +61,16 @@ namespace University.Web.Controllers
 
             try
             {
+
+
+                LoadData();
+
                 if (!ModelState.IsValid)
                     return View(department);
 
                 if (department.StartDate > DateTime.Now)
                     throw new Exception("La fecha no puede ser mayor a la fecha actual");
-                context.Departments.Add(new Department
+                context.Departments.Add(new BL.Models.Department
                 {
                     Name = department.Name,
                     Budget = department.Budget,
@@ -80,10 +91,24 @@ namespace University.Web.Controllers
 
             return View(department);
         }
+        public void LoadData()
+        {
+            var Instructors = context.Instructors.Select(x => new InstructorDTO
+            {
+
+                ID = x.ID,
+                FirstMidName = x.FirstMidName,
+                LastName = x.LastName
+            }).ToList();
+            ViewData["Instructors"] = new SelectList(Instructors, "ID", "FullName");
+
+        }
 
         [HttpGet]
         public ActionResult Edit(int departmentid)
         {
+
+            LoadData();
             var deparment = context.Departments.Where(x => x.DepartmentID == departmentid)
                                                 .Select(x => new DepartmentDTO
                                                 {
@@ -103,6 +128,8 @@ namespace University.Web.Controllers
 
             try
             {
+                LoadData();
+
                 if (!ModelState.IsValid)
                     return View(department);
                 if (department.StartDate > DateTime.Now)

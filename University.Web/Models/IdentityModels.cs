@@ -29,5 +29,9 @@ namespace University.Web.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<University.BL.Models.Department> Departments { get; set; }
+
+        public System.Data.Entity.DbSet<University.BL.Models.Instructor> Instructors { get; set; }
     }
 }

@@ -1,31 +1,63 @@
 ﻿@model University.BL.DTOs.DepartmentDTO
+
 @{
     ViewBag.Title = "Edit";
 }
+
 <h2>Edit</h2>
 
-<form method="post" action="/Departments/Edit">
-    
-    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-    @Html.HiddenFor(m => m.DepartmentID)
+    <div class="form-horizontal">
+        <h4>Department</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.DepartmentID)
 
-    @Html.DisplayNameFor(m => m.Name)
-    @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" } })
-    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-    @Html.DisplayNameFor(m => m.Budget)
-    @Html.EditorFor(m => m.Budget, new { htmlAttributes = new { @class = "form-control" } })
-    @Html.ValidationMessageFor(m => m.Budget, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Budget, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Budget, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Budget, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-    @Html.DisplayNameFor(m => m.StartDate)
-    @Html.EditorFor(m => m.StartDate, new { htmlAttributes = new { @class = "form-control" } })
-    @Html.ValidationMessageFor(m => m.StartDate, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-    @Html.DisplayNameFor(m => m.InstructorID)
-    @Html.EditorFor(m => m.InstructorID, new { htmlAttributes = new { @class = "form-control" } })
-    @Html.ValidationMessageFor(m => m.InstructorID, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.InstructorID, "InstructorID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.InstructorID, (SelectList)ViewData["Instructors"], new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.InstructorID, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-    <hr />
-    <input type="submit" value="Edit" class="btn btn-primary" />
-</form>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <hr />
+                <input type="submit" value="Edit" class="btn btn-primary" />
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

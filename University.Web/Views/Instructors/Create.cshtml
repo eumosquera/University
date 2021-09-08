@@ -8,10 +8,7 @@
 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
 <form action="/Instructors/Create" method="post">
-    @Html.DisplayNameFor(m => m.ID)
-    @Html.EditorFor(m => m.ID, new { htmlAttributes = new { @class = "form-control" } })
-    @Html.ValidationMessageFor(m => m.ID, "", new { @class = "text-danger" })
-
+   
     @Html.DisplayNameFor(m => m.LastName)
     @Html.EditorFor(m => m.LastName, new { htmlAttributes = new { @class = "form-control" } })
     @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })

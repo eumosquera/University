@@ -4,9 +4,9 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Welcome To Courses</h2>
 <hr />
-@Html.ActionLink("Create New", "Create", "Courses", null, new { @class = "btn btn-sm btn-primary" })
+@Html.ActionLink("Create New Course", "Create", "Courses", null, new { @class = "btn btn-sm btn-primary" })
 <hr />
 @using (Html.BeginForm("Index", "Courses", FormMethod.Get))
 {
@@ -45,9 +45,9 @@
                 <td>@item.Credits</td>
 
                 <td>
-                    @Html.ActionLink("Intructor", "Index", "Courses", new { courseid = item.CourseID }, new { @class = "btn btn-sm btn-info" })
+                    @Html.ActionLink("Instructor", "Index", "Courses", new { courseid = item.CourseID }, new { @class = "btn btn-sm btn-info" })
                     @Html.ActionLink("Edit", "Edit", "Courses", new { courseid = item.CourseID }, new { @class = "btn btn-sm btn-primary" })
-                    @Html.ActionLink("Delete", "Delete", "Courses", new { courseid = item.CourseID }, new { @class = "btn btn-sm btn-primary" })
+                    @Html.ActionLink("Delete", "Delete", "Courses", new { courseid = item.CourseID }, new { @class = "btn btn-sm btn-danger" })
                 </td>
             </tr>
         }

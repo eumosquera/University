@@ -12,12 +12,12 @@ namespace University.BL.DTOs
 
         [Display(Name = "Last Name")]
         [Required(ErrorMessage = "El campo Last Name es requerido")]
-        [StringLength(50, ErrorMessage = "Máximo 50 caracteres")]
+        [StringLength(30, ErrorMessage = "Máximo 30 caracteres")]
         public string LastName { get; set; }
 
         [Display(Name = "First MidName")]
         [Required(ErrorMessage = "El campo First MidName es requerido")]
-        [StringLength(50, ErrorMessage = "Máximo 50 caracteres")]
+        [StringLength(30, ErrorMessage = "Máximo 30 caracteres")]
         public string FirstMidName { get; set; }
 
         [Display(Name ="Hire Date")]

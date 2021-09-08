@@ -5,11 +5,13 @@ namespace University.BL.DTOs
 {
     public class OfficeAssignmentDTO
     {
-        [Required()]
+        [Display(Name = "InstructorID")]
+        [Required(ErrorMessage = "El campo InstructorID es requerido.")]
         public int InstructorID { get; set; }
 
-        [Required()]
-        [StringLength(50)]
+        [Display(Name = "Location")]
+        [Required(ErrorMessage = "El campo Location es requerido.")]
+        [StringLength(30, ErrorMessage = "Maximo 30 caracteres")]
         public string Location { get; set; }
 
         //nav

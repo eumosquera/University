@@ -18,8 +18,8 @@
 
     <!-- Site -->
     <link rel="stylesheet" href="~/Content/Site.css">
-    <link rel="stylesheet" href="~/Content/PagedList.css" />
     <script src="~/Scripts/Site.js"></script>
+    <link rel="stylesheet" href="~/Content/PagedList.css" />
 </head>
 <body>
     <div class="d-flex" id="wrapper">
@@ -33,11 +33,12 @@
             </div>
             <div class="list-group list-group-flush">
 
-                @Html.ActionLink("Students", "Index", "Students", null, new { @class = "list-group-item list-group-item-action bg-light" })
-                @Html.ActionLink("Instructors", "Index", "Instructors", null, new { @class = "list-group-item list-group-item-action bg-light" })
-                @Html.ActionLink("Courses", "Index", "Courses", null, new { @class = "list-group-item list-group-item-action bg-light" })
-                @Html.ActionLink("Offices", "Index", "OfficeAssignments", null, new { @class = "list-group-item list-group-item-action bg-light" })
-                @Html.ActionLink("Departments", "Index", "Departments", null, new { @class = "list-group-item list-group-item-action bg-light" })
+
+                @Html.ActionLink("Students", "Index", "Students", null, new { @class = "list-group-item list-group-item-action list-group-item-success" })
+                @Html.ActionLink("Instructors", "Index", "Instructors", null, new { @class = "list-group-item list-group-item-action list-group-item-primary" })
+                @Html.ActionLink("Courses", "Index", "Courses", null, new { @class = "list-group-item list-group-item-action list-group-item-warning" })
+                @Html.ActionLink("Offices", "Index", "OfficeAssignments", null, new { @class = "list-group-item list-group-item-action list-group-item-secondary" })
+                @Html.ActionLink("Departments", "Index", "Departments", null, new { @class = "list-group-item list-group-item-action list-group-item-info" })
 
 
                 @if (Request.IsAuthenticated)

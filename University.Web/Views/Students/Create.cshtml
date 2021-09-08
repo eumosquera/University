@@ -10,12 +10,6 @@
 
 <form action="/Students/Create" method="post">
 
-    @* @Html.HiddenFor(m => m.ID)*@
-
-    @Html.DisplayNameFor(m => m.ID)
-    @Html.EditorFor(m => m.ID, new { htmlAttributes = new { @class = "form-control" } })
-    @Html.ValidationMessageFor(m => m.ID, "", new { @class = "text-danger" })
-
     @Html.DisplayNameFor(m => m.LastName)
     @Html.EditorFor(m => m.LastName, new { htmlAttributes = new { @class = "form-control" } })
     @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
