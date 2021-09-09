@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web.Mvc;
-using University.BL.Models;
-using University.BL.DTOs;
-using University.BL.Data;
+﻿using PagedList;
+using System;
 using System.Linq;
-using PagedList;
+using System.Web.Mvc;
+using University.BL.Data;
+using University.BL.DTOs;
+using University.BL.Models;
 
 namespace University.Web.Controllers
 {
@@ -42,7 +41,7 @@ namespace University.Web.Controllers
                                   where q.InstructorID == instructorID
                                   select new DepartmentDTO
                                   {
-                                      
+
                                       DepartmentID = q.DepartmentID,
                                       Name = q.Name,
                                       Budget = q.Budget
@@ -148,7 +147,9 @@ namespace University.Web.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            if (!context.Departments.Any(x => x.InstructorID == id))
+            if (!context.Departments.Any(x => x.InstructorID == id) &&
+                (!context.CourseInstructors.Any(x => x.InstructorID ==id)) && 
+                (!context.OfficeAssignments.Any(x => x.InstructorID ==id)))
             {
                 var instructortModel = context.Instructors.FirstOrDefault(x => x.ID == id);
                 context.Instructors.Remove(instructortModel);

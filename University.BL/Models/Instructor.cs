@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Collections.Generic;
 namespace University.BL.Models
 {
-    [Table("Instructor", Schema ="dbo")]
+    [Table("Instructor", Schema = "dbo")]
     public class Instructor
     {
         [Key]

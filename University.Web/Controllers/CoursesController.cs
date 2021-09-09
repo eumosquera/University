@@ -136,7 +136,7 @@ namespace University.Web.Controllers
 
         // GET: Courses/Delete
         [HttpGet]
-    public ActionResult Delete(int courseid)
+        public ActionResult Delete(int courseid)
         {
             if (!context.CourseInstructors.Any(x => x.CourseID == courseid))
             {

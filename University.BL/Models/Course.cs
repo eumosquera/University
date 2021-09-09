@@ -13,7 +13,7 @@ namespace University.BL.Models
         public int CourseID { get; set; }
         public string Title { get; set; }
         public int Credits { get; set; }
-        
+
         //DEPENDENCIES
         public virtual ICollection<Enrollment> Enrollments { get; set; }
         public virtual ICollection<CourseInstructor> CourseInstructors { get; set; }

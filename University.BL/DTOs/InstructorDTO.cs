@@ -20,8 +20,8 @@ namespace University.BL.DTOs
         [StringLength(30, ErrorMessage = "Máximo 30 caracteres")]
         public string FirstMidName { get; set; }
 
-        [Display(Name ="Hire Date")]
-        [Required(ErrorMessage ="El campo Hire Date es requerido")]
+        [Display(Name = "Hire Date")]
+        [Required(ErrorMessage = "El campo Hire Date es requerido")]
         [DataType(DataType.DateTime)]
         public DateTime HireDate { get; set; }
 

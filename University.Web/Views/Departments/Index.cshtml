@@ -29,8 +29,8 @@
     </p>
 }
 
-<table class="table table-bordered">
-    <thead>
+<table class="table table-bordered table-responsive table-responsive">
+    <thead class="thead-dark">
         <tr>
             <th>DeparmentID</th>
             <th>Name</th>
@@ -61,5 +61,5 @@
 Page @(Model.PageCount < Model.PageNumber ? 0: Model.PageNumber) of @Model.PageCount
 <br />
 Total Item Count @Model.TotalItemCount
-@Html.PagedListPager(Model, page => Url.Action("Index", "Instructors", new { page, pageSize = ViewBag.PageSize }))
+@Html.PagedListPager(Model, page => Url.Action("Index", "Departments", new { page, pageSize = ViewBag.PageSize }))
 

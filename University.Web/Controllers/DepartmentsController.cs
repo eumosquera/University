@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web.Mvc;
-using University.BL.Models;
-using University.BL.DTOs;
-using University.BL.Data;
+﻿using PagedList;
+using System;
 using System.Linq;
-using PagedList;
+using System.Web.Mvc;
+using University.BL.Data;
+using University.BL.DTOs;
 
 
 namespace University.Web.Controllers
@@ -29,7 +27,7 @@ namespace University.Web.Controllers
                     Budget = x.Budget,
                     StartDate = x.StartDate,
                     InstructorID = x.InstructorID,
-                    Instructor =  new InstructorDTO
+                    Instructor = new InstructorDTO
                     {
                         FirstMidName = x.Instructor.FirstMidName,
                         LastName = x.Instructor.LastName

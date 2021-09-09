@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web.Mvc;
-using University.BL.Models;
-using University.BL.DTOs;
-using University.BL.Data;
+﻿using PagedList;
+using System;
 using System.Linq;
-using PagedList;
+using System.Web.Mvc;
+using University.BL.Data;
+using University.BL.DTOs;
+using University.BL.Models;
 
 namespace University.Web.Controllers
 {

@@ -1,8 +1,7 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace University.Web.Models
 {
@@ -33,5 +32,9 @@ namespace University.Web.Models
         public System.Data.Entity.DbSet<University.BL.Models.Department> Departments { get; set; }
 
         public System.Data.Entity.DbSet<University.BL.Models.Instructor> Instructors { get; set; }
+
+        public System.Data.Entity.DbSet<University.BL.DTOs.CourseInstructorDTO> CourseInstructorDTOes { get; set; }
+
+        public System.Data.Entity.DbSet<University.BL.DTOs.InstructorDTO> InstructorDTOes { get; set; }
     }
 }
